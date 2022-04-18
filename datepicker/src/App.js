@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import DatePicker from 'react-datepicker'
+import 'react-date-picker\dist\DatePicker.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import './App.css'
 
+class App extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {date: new Date()};
+      this.dateChange = this.dateChange.bind(this);}
+      dateChange(date) {
+          this.setState({date: date},
+          () => {
+                  console.log(this.state.date);
+                });
+         }
+  render() {
+      return (
+            <div>
+              <p> Pick a date:</p>
+              <DatePicker selected={this.state.date} onChange={this.dateChange} dateFormat="MMMM d, yyyy"/>
+            </div>
+     );
+    }
+  }
 export default App;
